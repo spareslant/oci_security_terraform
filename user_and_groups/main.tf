@@ -1,11 +1,11 @@
 resource "oci_identity_user" "user" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.parent_comp_id
   description    = var.user_description
   name           = var.user_name
 }
 
 resource "oci_identity_group" "group" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.parent_comp_id
   description    = var.group_description
   name           = var.group_name
 }
@@ -16,13 +16,13 @@ resource "oci_identity_user_group_membership" "user_group_membership" {
 }
 
 resource "oci_identity_compartment" "compartment" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.parent_comp_id
   description    = var.compartment_description
   name           = var.compartment_name
 }
 
 resource "oci_identity_policy" "policy" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.parent_comp_id
   description    = var.policy_description
   name           = var.policy_name
   statements = [
