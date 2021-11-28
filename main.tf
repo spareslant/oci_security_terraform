@@ -25,3 +25,27 @@ module "user_and_group" {
   policy_description      = var.policy_description
   parent_comp_id          = var.tenancy_ocid
 }
+
+provider "oci" {
+  tenancy_ocid     = var.tenancy_ocid
+  user_ocid        = module.user_and_group.oci_identity_user.user.id
+  private_key_path = module.user_and_group.tls_private_key.user_keys.private_key_path
+  fingerprint      = module.user_and_group.oci_identity_api_key.user_api_key.fingerprint
+  region           = var.region
+  alias            = "user"
+}
+
+module "networking" {
+  source = "./networking"
+  providers = {
+    oci.account = oci.user
+  }
+  depends_on                    = [module.user_and_group]
+  compartment_id                = module.user_and_group.compartment_id
+  vcn_cidr_blocks               = var.vcn_cidr_blocks
+  vcn_display_name              = var.vcn_display_name
+  internet_gateway_display_name = var.internet_gateway_display_name
+  route_table_display_name      = var.route_table_display_name
+  subnet_cidr_block             = var.subnet_cidr_block
+  subnet_display_name           = var.subnet_display_name
+}

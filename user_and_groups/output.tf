@@ -5,3 +5,7 @@ output "api_key_private" {
 output "api_key_fingerprint" {
   value = oci_identity_api_key.user_api_key.fingerprint
 }
+
+output "compartment_id" {
+  value = oci_identity_compartment.compartment.id
+}

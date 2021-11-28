@@ -27,3 +27,21 @@ variable "policy_name" {
 variable "policy_description" {
   default = "TF Policy"
 }
+variable "vcn_cidr_blocks" {
+  default = ["10.0.0.0/16"]
+}
+variable "vcn_display_name" {
+  default = "TF_VCN"
+}
+variable "internet_gateway_display_name" {
+  default = "TF_GATEWAY"
+}
+variable "route_table_display_name" {
+  default = "TF_ROUTE_TABLE"
+}
+variable "subnet_display_name" {
+  default = "TF_PUBLIC_SUBNET"
+}
+variable "subnet_cidr_block" {
+  default = "10.0.0.0/24"
+}
