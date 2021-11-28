@@ -45,3 +45,15 @@ variable "subnet_display_name" {
 variable "subnet_cidr_block" {
   default = "10.0.0.0/24"
 }
+variable "ad_number" {
+  default = 1
+}
+variable "instance_shape" {
+  default = "VM.Standard.E2.1.Micro"
+}
+variable "instance_display_name" {
+  default = "TF_INSTANCE"
+}
+variable "image_id" {
+  default = "ocid1.image.oc1.uk-london-1.aaaaaaaa7p27563e2wyhmn533gp7g3wbohrhjacsy3r5rpujyr6n6atqppuq"
+}

@@ -49,3 +49,18 @@ module "networking" {
   subnet_cidr_block             = var.subnet_cidr_block
   subnet_display_name           = var.subnet_display_name
 }
+
+module "instance" {
+  source = "./instance"
+  providers = {
+    oci.account = oci.user
+  }
+  depends_on            = [module.networking]
+  compartment_id        = module.user_and_group.compartment_id
+  tenancy_ocid          = var.tenancy_ocid
+  ad_number             = var.ad_number
+  instance_shape        = var.instance_shape
+  subnet_id             = module.networking.public_subnet_id
+  instance_display_name = var.instance_display_name
+  image_id              = var.image_id
+}
